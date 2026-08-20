@@ -1,0 +1,3 @@
+package api
+import("encoding/json";"net/http";"github.com/nova-spectre777/aegis/coordinator-go/internal/model";"github.com/nova-spectre777/aegis/coordinator-go/internal/quorum")
+func Handler() http.Handler { mux:=http.NewServeMux(); mux.HandleFunc("/health",func(w http.ResponseWriter,r *http.Request){w.Header().Set("content-type","application/json");w.Write([]byte(`{"status":"ok"}`))}); mux.HandleFunc("/v1/assess",func(w http.ResponseWriter,r *http.Request){if r.Method!="POST"{http.Error(w,"method",405);return};var req model.AssessmentRequest;if err:=json.NewDecoder(http.MaxBytesReader(w,r.Body,1<<20)).Decode(&req);err!=nil{http.Error(w,"bad json",400);return};w.Header().Set("content-type","application/json");json.NewEncoder(w).Encode(quorum.Assess(req))}); return mux }

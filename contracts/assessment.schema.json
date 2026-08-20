@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"CAPE Assessment","type":"object","required":["decision"],"properties":{"decision":{"enum":["ALLOW","BLOCK","UNKNOWN"]},"counterexample":{"type":"string"},"violations":{"type":"array","items":{"type":"string"}},"policy_digest":{"type":"string"}}}

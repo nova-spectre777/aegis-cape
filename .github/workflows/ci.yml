@@ -1,0 +1,16 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  verified-stack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.23.x'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: sudo apt-get update && sudo apt-get install -y cmake g++
+      - run: npm install -g typescript@5.8.3
+      - run: ./scripts/check_all.sh

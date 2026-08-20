@@ -1,0 +1,12 @@
+{
+  "intent": "Swap at most 1.01 ETH for at least 3300 USDC without persistent unlimited approvals",
+  "policy": {
+    "minimum_delta": {"USDC": 3300},
+    "maximum_loss": {"ETH": 1.01},
+    "deny_unlimited_approvals": true,
+    "deny_owner_change": true,
+    "deny_module_install": true,
+    "deny_delegatecall": true,
+    "minimum_credible_world": 0.5
+  }
+}
